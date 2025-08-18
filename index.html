@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Ruchonnet Lausanne - Parking, Mécanique & Occasions</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#1A237E', secondary: '#D32F2F' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-opensans {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(26, 35, 126, 0.7), rgba(26, 35, 126, 0.7)), url('https://readdy.ai/api/search-image?query=modern%20automotive%20garage%20workshop%20with%20professional%20mechanics%20working%20on%20luxury%20cars%2C%20clean%20industrial%20interior%20with%20bright%20lighting%2C%20tools%20and%20equipment%20organized%2C%20contemporary%20automotive%20service%20center%20atmosphere%2C%20professional%20automotive%20environment&width=1920&height=1080&seq=hero-garage&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body class="font-opensans text-gray-800 bg-gray-50">
+    <!-- Header -->
+    <header class="fixed w-full top-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-montserrat font-bold text-primary">Garage Ruchonnet</h1>
+                </div>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#parking"
+                        class="text-gray-700 hover:text-primary transition-colors font-medium">Parking</a>
+                    <a href="#garage" class="text-gray-700 hover:text-primary transition-colors font-medium">Garage</a>
+                    <a href="#occasions"
+                        class="text-gray-700 hover:text-primary transition-colors font-medium">Occasions</a>
+                    <a href="#contact"
+                        class="text-gray-700 hover:text-primary transition-colors font-medium">Contact</a>
+                    <a href="#espace-prive"
+                        class="text-gray-700 hover:text-primary transition-colors font-medium">Espace privé</a>
+                </nav>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden w-6 h-6 flex items-center justify-center">
+                    <i class="ri-menu-line text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="md:hidden bg-white border-t hidden">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#parking" class="block py-2 text-gray-700 hover:text-primary transition-colors">Parking</a>
+                <a href="#garage" class="block py-2 text-gray-700 hover:text-primary transition-colors">Garage</a>
+                <a href="#occasions" class="block py-2 text-gray-700 hover:text-primary transition-colors">Occasions</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-primary transition-colors">Contact</a>
+                <a href="#espace-prive" class="block py-2 text-gray-700 hover:text-primary transition-colors">Espace
+                    privé</a>
+            </div>
+        </nav>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center text-white">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-6xl font-montserrat font-bold mb-6">
+                    Votre partenaire automobile à Lausanne
+                </h2>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-light">
+                    Parking sécurisé, garage mécanique spécialisé et véhicules d'occasion de qualité
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button
+                        class="bg-secondary hover:bg-red-700 text-white px-8 py-3 !rounded-button font-semibold transition-colors whitespace-nowrap">
+                        Nos services
+                    </button>
+                    <button
+                        class="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-3 !rounded-button font-semibold transition-all whitespace-nowrap">
+                        Nous contacter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl md:text-4xl font-montserrat font-bold text-primary mb-4">Nos Services</h3>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Découvrez notre gamme complète de services automobiles adaptés à vos besoins
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Parking Card -->
+                <div class="bg-gray-50 rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-parking-box-line text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-montserrat font-bold mb-4">Parking Sécurisé</h4>
+                    <p class="text-gray-600 mb-6">
+                        Location mensuelle pour autos et motos dans un parking surveillé 24h/24 au cœur de Lausanne
+                    </p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Surveillance 24h/24</li>
+                        <li>• Accès sécurisé par badge</li>
+                        <li>• Places pour autos et motos</li>
+                        <li>• Tarifs mensuels avantageux</li>
+                    </ul>
+                    <button
+                        class="bg-primary hover:bg-blue-800 text-white px-6 py-2 !rounded-button font-medium transition-colors whitespace-nowrap">
+                        En savoir plus
+                    </button>
+                </div>
+                <!-- Garage Card -->
+                <div class="bg-gray-50 rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-tools-line text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-montserrat font-bold mb-4">Garage Mécanique</h4>
+                    <p class="text-gray-600 mb-6">
+                        Services mécaniques complets avec une spécialisation reconnue pour les véhicules Opel
+                    </p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Entretien et réparation</li>
+                        <li>• Spécialiste Opel</li>
+                        <li>• Diagnostic électronique</li>
+                        <li>• Contrôle technique</li>
+                    </ul>
+                    <button
+                        class="bg-primary hover:bg-blue-800 text-white px-6 py-2 !rounded-button font-medium transition-colors whitespace-nowrap">
+                        Nos prestations
+                    </button>
+                </div>
+                <!-- Occasions Card -->
+                <div class="bg-gray-50 rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-car-line text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-montserrat font-bold mb-4">Véhicules d'Occasion</h4>
+                    <p class="text-gray-600 mb-6">
+                        Sélection rigoureuse de véhicules d'occasion contrôlés et garantis par nos soins
+                    </p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li>• Véhicules contrôlés</li>
+                        <li>• Garantie incluse</li>
+                        <li>• Financement possible</li>
+                        <li>• Reprise de votre ancien véhicule</li>
+                    </ul>
+                    <button
+                        class="bg-primary hover:bg-blue-800 text-white px-6 py-2 !rounded-button font-medium transition-colors whitespace-nowrap">
+                        Voir le stock
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Parking Section -->
+    <section id="parking" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-3xl font-montserrat font-bold text-primary mb-6">Parking Mensuel Sécurisé</h3>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Stationnez en toute sérénité au centre de Lausanne dans notre parking souterrain sécurisé,
+                        accessible 24h/24 et surveillé en permanence.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="ri-shield-check-line text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Sécurité 24h/24</h4>
+                                <p class="text-gray-600">Surveillance permanente et accès contrôlé par badge
+                                    électronique</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="ri-map-pin-line text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Emplacement Central</h4>
+                                <p class="text-gray-600">Idéalement situé au cœur de Lausanne, proche des transports
+                                    publics</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="ri-motorcycle-line text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Autos & Motos</h4>
+                                <p class="text-gray-600">Places adaptées pour voitures et motos avec tarifs
+                                    préférentiels</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 bg-gray-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-semibold mb-4">Nos Tarifs Mensuels</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h5 class="font-semibold text-primary mb-2">Voitures</h5>
+                                <p class="text-2xl font-bold text-gray-800 mb-1">CHF 220<span
+                                        class="text-sm text-gray-600">/mois</span></p>
+                                <p class="text-sm text-gray-600">Place standard</p>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h5 class="font-semibold text-primary mb-2">Motos</h5>
+                                <p class="text-2xl font-bold text-gray-800 mb-1">CHF 95<span
+                                        class="text-sm text-gray-600">/mois</span></p>
+                                <p class="text-sm text-gray-600">Place couverte</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4">* Tarifs TTC, engagement minimum 3 mois</p>
+                    </div>
+                </div>
+                <div class="lg:order-last">
+                    <img src="https://readdy.ai/api/search-image?query=modern%20underground%20parking%20garage%20with%20bright%20LED%20lighting%2C%20clean%20concrete%20floors%2C%20organized%20parking%20spaces%20for%20cars%20and%20motorcycles%2C%20security%20cameras%20visible%2C%20professional%20urban%20parking%20facility%20interior%2C%20safe%20and%20well-maintained%20environment&width=600&height=400&seq=parking-interior&orientation=landscape"
+                        alt="Parking sécurisé" class="rounded-lg shadow-lg w-full h-80 object-cover object-top">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Garage Section -->
+    <section id="garage" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://readdy.ai/api/search-image?query=professional%20automotive%20garage%20workshop%20with%20modern%20equipment%2C%20mechanic%20working%20on%20Opel%20car%20engine%2C%20clean%20organized%20workspace%20with%20diagnostic%20tools%2C%20contemporary%20automotive%20service%20bay%2C%20professional%20car%20repair%20environment%20with%20bright%20lighting&width=600&height=400&seq=garage-workshop&orientation=landscape"
+                        alt="Atelier mécanique" class="rounded-lg shadow-lg w-full h-80 object-cover object-top">
+                </div>
+                <div>
+                    <h3 class="text-3xl font-montserrat font-bold text-primary mb-6">Garage Mécanique Spécialisé</h3>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Notre équipe de mécaniciens expérimentés vous offre un service complet d'entretien et de
+                        réparation,
+                        avec une expertise particulière sur les véhicules Opel.
+                    </p>
+                    <div class="grid sm:grid-cols-2 gap-6 mb-8">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i class="ri-settings-3-line text-primary text-lg"></i>
+                                <span class="text-gray-700">Entretien périodique</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="ri-computer-line text-primary text-lg"></i>
+                                <span class="text-gray-700">Diagnostic électronique</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="ri-car-washing-line text-primary text-lg"></i>
+                                <span class="text-gray-700">Réparations toutes marques</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i class="ri-medal-line text-primary text-lg"></i>
+                                <span class="text-gray-700">Spécialiste Opel</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="ri-shield-check-line text-primary text-lg"></i>
+                                <span class="text-gray-700">Contrôle technique</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="ri-time-line text-primary text-lg"></i>
+                                <span class="text-gray-700">Service rapide</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg mb-8">
+                        <h4 class="font-semibold text-gray-800 mb-3">Expertise Opel</h4>
+                        <p class="text-gray-600">
+                            Centre de service agréé Opel avec accès aux pièces d'origine et aux dernières
+                            technologies de diagnostic pour tous les modèles de la marque.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-semibold mb-4">Nos Horaires</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Lundi - Vendredi</span>
+                                <span class="font-semibold">07h30 - 18h00</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Samedi</span>
+                                <span class="font-semibold">08h00 - 12h00</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Dimanche</span>
+                                <span class="font-semibold text-secondary">Fermé</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4">Service d'urgence disponible 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Occasions Section -->
+    <section id="occasions" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h3 class="text-3xl font-montserrat font-bold text-primary mb-4">Nos Occasions</h3>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Découvrez notre sélection de véhicules, accessoires et photographies de collection
+                </p>
+            </div>
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex bg-gray-100 rounded-full p-1">
+                    <button class="px-6 py-2 rounded-full bg-primary text-white whitespace-nowrap"
+                        id="filter-vehicles">Véhicules</button>
+                    <button class="px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap"
+                        id="filter-accessories">Accessoires</button>
+                    <button class="px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap"
+                        id="filter-photos">Photos Collection</button>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 mb-12" id="vehicles-section">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://readdy.ai/api/search-image?query=modern%20silver%20Opel%20Astra%20hatchback%20car%20in%20professional%20automotive%20showroom%2C%20clean%20white%20background%2C%20side%20angle%20view%2C%20pristine%20condition%20used%20car%20for%20sale%2C%20contemporary%20vehicle%20photography&width=400&height=250&seq=opel-astra&orientation=landscape"
+                        alt="Opel Astra" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold mb-2">Opel Astra 1.4T</h4>
+                        <p class="text-gray-600 mb-4">2019 • 45 000 km • Essence</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-primary">CHF 18 500</span>
+                            <button
+                                class="bg-secondary hover:bg-red-700 text-white px-4 py-2 !rounded-button text-sm font-medium transition-colors whitespace-nowrap">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://readdy.ai/api/search-image?query=elegant%20black%20BMW%203%20series%20sedan%20in%20professional%20automotive%20showroom%2C%20clean%20white%20background%2C%20three%20quarter%20front%20view%2C%20premium%20used%20car%20for%20sale%2C%20luxury%20vehicle%20photography&width=400&height=250&seq=bmw-3series&orientation=landscape"
+                        alt="BMW Série 3" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold mb-2">BMW Série 3 320d</h4>
+                        <p class="text-gray-600 mb-4">2018 • 62 000 km • Diesel</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-primary">CHF 24 900</span>
+                            <button
+                                class="bg-secondary hover:bg-red-700 text-white px-4 py-2 !rounded-button text-sm font-medium transition-colors whitespace-nowrap">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://readdy.ai/api/search-image?query=white%20Volkswagen%20Golf%20hatchback%20in%20professional%20automotive%20showroom%2C%20clean%20background%2C%20side%20profile%20view%2C%20well-maintained%20used%20car%20for%20sale%2C%20modern%20compact%20vehicle%20photography&width=400&height=250&seq=vw-golf&orientation=landscape"
+                        alt="VW Golf" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold mb-2">VW Golf 1.5 TSI</h4>
+                        <p class="text-gray-600 mb-4">2020 • 28 000 km • Essence</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-primary">CHF 22 800</span>
+                            <button
+                                class="bg-secondary hover:bg-red-700 text-white px-4 py-2 !rounded-button text-sm font-medium transition-colors whitespace-nowrap">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg p-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h4 class="text-2xl font-montserrat font-bold text-primary mb-4">Notre Engagement Qualité</h4>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-center space-x-3">
+                                <i class="ri-checkbox-circle-line text-secondary"></i>
+                                <span>Contrôle technique complet de tous nos véhicules</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="ri-checkbox-circle-line text-secondary"></i>
+                                <span>Garantie de 6 mois sur tous les véhicules</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="ri-checkbox-circle-line text-secondary"></i>
+                                <span>Financement et leasing disponibles</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="ri-checkbox-circle-line text-secondary"></i>
+                                <span>Reprise de votre ancien véhicule</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="text-center">
+                        <button
+                            class="bg-primary hover:bg-blue-800 text-white px-8 py-3 !rounded-button font-semibold transition-colors whitespace-nowrap mb-4">
+                            Voir tout le stock
+                        </button>
+                        <p class="text-sm text-gray-500">Plus de 25 véhicules disponibles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-montserrat font-bold text-primary mb-4">Nous Contacter</h3>
+                <p class="text-lg text-gray-600">
+                    Une question ? N'hésitez pas à nous contacter par téléphone ou à nous rendre visite
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-1 gap-12">
+                <!-- Contact Info & Map -->
+                <div class="space-y-8">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 rounded-lg p-6 text-center">
+                            <div
+                                class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="ri-map-pin-line text-white text-xl"></i>
+                            </div>
+                            <h5 class="font-semibold mb-2">Adresse</h5>
+                            <p class="text-gray-600 text-sm">
+                                Rue du Commerce 15<br>
+                                1003 Lausanne
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-6 text-center">
+                            <div
+                                class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="ri-phone-line text-white text-xl"></i>
+                            </div>
+                            <h5 class="font-semibold mb-2">Téléphone</h5>
+                            <p class="text-gray-600 text-sm">
+                                021 555 0123<br>
+                                079 555 0456
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-6 text-center">
+                            <div
+                                class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="ri-mail-line text-white text-xl"></i>
+                            </div>
+                            <h5 class="font-semibold mb-2">Email</h5>
+                            <p class="text-gray-600 text-sm">
+                                info@garagecentral.ch<br>
+                                garage@garagecentral.ch
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-6 text-center">
+                            <div
+                                class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="ri-time-line text-white text-xl"></i>
+                            </div>
+                            <h5 class="font-semibold mb-2">Horaires</h5>
+                            <p class="text-gray-600 text-sm">
+                                Lun-Ven: 07h30-18h00<br>
+                                Sam: 08h00-12h00
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Map -->
+                    <div class="bg-gray-200 rounded-lg h-64 overflow-hidden relative">
+                        <div class="w-full h-full bg-center bg-cover"
+                            style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png');">
+                            <div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+                                <div class="bg-white rounded-lg p-4 shadow-lg">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="ri-map-pin-fill text-secondary text-xl"></i>
+                                        <span class="font-semibold">Garage Central Lausanne</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Espace Privé Section -->
+    <section id="espace-prive" class="py-20 bg-gray-50">
+        <div class="max-w-md mx-auto px-4">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-admin-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-montserrat font-bold text-primary mb-2">Administration</h3>
+                    <p class="text-gray-600">Accès réservé aux administrateurs</p>
+                </div>
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nom d'utilisateur</label>
+                        <div class="relative">
+                            <input type="text"
+                                class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                            <div
+                                class="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+                                <i class="ri-user-line text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Mot de passe</label>
+                        <div class="relative">
+                            <input type="password"
+                                class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                            <div
+                                class="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+                                <i class="ri-lock-line text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-primary hover:bg-blue-800 text-white py-3 !rounded-button font-semibold transition-colors whitespace-nowrap">
+                        Se connecter
+                    </button>
+                </form>
+                <div id="login-error"
+                    class="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm hidden">
+                    Nom d'utilisateur ou mot de passe incorrect.
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-montserrat font-bold mb-4">Garage Central</h4>
+                    <p class="text-gray-300 mb-4">
+                        Votre partenaire automobile de confiance à Lausanne depuis plus de 20 ans.
+                    </p>
+                    <div class="flex space-x-4">
+                        <div
+                            class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+                            <i class="ri-facebook-line text-sm"></i>
+                        </div>
+                        <div
+                            class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+                            <i class="ri-instagram-line text-sm"></i>
+                        </div>
+                        <div
+                            class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+                            <i class="ri-linkedin-line text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4">Liens Rapides</h5>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#parking" class="hover:text-white transition-colors">Parking</a></li>
+                        <li><a href="#garage" class="hover:text-white transition-colors">Garage</a></li>
+                        <li><a href="#occasions" class="hover:text-white transition-colors">Occasions</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#espace-prive" class="hover:text-white transition-colors">Espace privé</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4">Contact</h5>
+                    <div class="space-y-3 text-gray-300">
+                        <div class="flex items-center space-x-3">
+                            <i class="ri-map-pin-line text-primary"></i>
+                            <span>Rue du Commerce 15, 1003 Lausanne</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ri-phone-line text-primary"></i>
+                            <span>021 555 0123</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ri-mail-line text-primary"></i>
+                            <span>info@garagecentral.ch</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="ri-time-line text-primary"></i>
+                            <span>Lun-Ven: 07h30-18h00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Garage Central Lausanne. Tous droits réservés. |
+                    <a href="#" class="hover:text-white transition-colors">Mentions légales</a> |
+                    <a href="#" class="hover:text-white transition-colors">Politique de confidentialité</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script id="mobile-menu-toggle">
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+    <script id="occasions-filter">
+        document.addEventListener('DOMContentLoaded', function () {
+            const vehiclesBtn = document.getElementById('filter-vehicles');
+            const accessoriesBtn = document.getElementById('filter-accessories');
+            const photosBtn = document.getElementById('filter-photos');
+            const vehiclesSection = document.getElementById('vehicles-section');
+
+            const setActiveButton = (activeBtn) => {
+                [vehiclesBtn, accessoriesBtn, photosBtn].forEach(btn => {
+                    btn.classList.remove('bg-primary', 'text-white');
+                    btn.classList.add('text-gray-700');
+                });
+                activeBtn.classList.add('bg-primary', 'text-white');
+                activeBtn.classList.remove('text-gray-700');
+            };
+
+            vehiclesBtn.addEventListener('click', () => {
+                setActiveButton(vehiclesBtn);
+                vehiclesSection.style.display = 'grid';
+            });
+
+            accessoriesBtn.addEventListener('click', () => {
+                setActiveButton(accessoriesBtn);
+                vehiclesSection.style.display = 'none';
+            });
+
+            photosBtn.addEventListener('click', () => {
+                setActiveButton(photosBtn);
+                vehiclesSection.style.display = 'none';
+            });
+        });
+    </script>
+    <script id="login-form-handling">
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.querySelector('#espace-prive form');
+            const errorDiv = document.getElementById('login-error');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    errorDiv.classList.remove('hidden');
+                    setTimeout(() => {
+                        errorDiv.classList.add('hidden');
+                    }, 3000);
+                });
+            }
+        });
+    </script>
+    <script id="smooth-scrolling">
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
