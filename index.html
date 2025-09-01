@@ -286,6 +286,41 @@
                 opacity: 1;
             }
         }
+        
+        /* Styles pour le bouton burger animé */
+        .burger-menu-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .burger-line {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: white;
+            position: absolute;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .top-line {
+            transform: translateY(-6px);
+        }
+        
+        .bottom-line {
+            transform: translateY(6px);
+        }
+        
+        /* Animation du bouton burger quand le menu est ouvert */
+        .burger-menu-btn.open .middle-line {
+            opacity: 0;
+        }
+        
+        .burger-menu-btn.open .top-line {
+            transform: rotate(45deg);
+        }
+        
+        .burger-menu-btn.open .bottom-line {
+            transform: rotate(-45deg);
+        }
     </style>
 </head>
 
@@ -307,13 +342,15 @@
                         class="text-gray-300 hover:text-white transition-colors font-medium nav-link" data-section="contact">Contact</a>
                 </nav>
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden w-6 h-6 flex items-center justify-center">
-                    <i class="ri-menu-line text-xl text-white"></i>
+                <button id="mobile-menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center relative burger-menu-btn">
+                    <span class="burger-line top-line"></span>
+                    <span class="burger-line middle-line"></span>
+                    <span class="burger-line bottom-line"></span>
                 </button>
             </div>
         </div>
         <!-- Mobile Navigation -->
-        <nav id="mobile-menu" class="md:hidden bg-gray-800 border-t border-gray-700 hidden">
+        <nav id="mobile-menu" class="md:hidden bg-gray-800 hidden">
             <div class="px-4 py-2 space-y-2">
                 <a href="#parking" class="block py-2 text-gray-300 hover:text-white transition-colors nav-link" data-section="parking">Parking</a>
                 <a href="#occasions" class="block py-2 text-gray-300 hover:text-white transition-colors nav-link" data-section="occasions">Occasions</a>
@@ -477,7 +514,8 @@
                     Découvrez notre sélection de véhicules, accessoires et photographies de collection
                 </p>
             </div>
-            <div class="flex justify-center mb-12">
+            <!-- Filtres Desktop -->
+            <div class="hidden md:flex justify-center mb-12">
                 <div class="inline-flex bg-gray-600 rounded-full p-0 shadow-md relative overflow-hidden">
                     <span id="active-tab-indicator" class="absolute h-full bg-blue-700 rounded-full transition-all duration-500 ease-in-out shadow-md" style="top: 0;"></span>
                     <button class="px-6 py-2 rounded-full text-white whitespace-nowrap font-medium relative z-10 transition-all duration-300"
@@ -486,6 +524,20 @@
                         id="filter-accessories">Accessoires</button>
                     <button class="px-6 py-2 rounded-full text-white whitespace-nowrap font-medium relative z-10 transition-all duration-300"
                         id="filter-photos">Photos Collection</button>
+                </div>
+            </div>
+
+            <!-- Filtres Mobile - Select dropdown -->
+            <div class="md:hidden flex justify-center mb-8">
+                <div class="w-full max-w-xs relative">
+                    <select id="mobile-filter" class="block w-full bg-gray-600 text-white py-3 px-4 pr-8 rounded-lg shadow-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="vehicles" selected>Véhicules</option>
+                        <option value="accessories">Accessoires</option>
+                        <option value="photos">Photos Collection</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+                        <i class="ri-arrow-down-s-line"></i>
+                    </div>
                 </div>
             </div>
             <div class="grid md:grid-cols-3 gap-8 mb-12 transition-all duration-500 ease-in-out" id="vehicles-section">
@@ -782,14 +834,59 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal détails -->
+    <div id="details-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-gray-900 bg-opacity-80 backdrop-blur-sm"></div>
+        <div class="absolute inset-0 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4">
+                <div class="relative bg-gray-700 rounded-lg shadow-xl w-full max-w-xl transform transition-all">
+                    <!-- Close button -->
+                    <button id="modal-close" class="absolute top-3 right-3 text-gray-300 hover:text-white p-1 z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Modal content -->
+                    <div>
+                        <div id="modal-image-container" class="w-full h-64 relative">
+                            <img id="modal-image" src="" alt="Détails" class="w-full h-full object-cover object-center">
+                        </div>
+                        <div class="p-6 text-white">
+                            <h3 id="modal-title" class="text-2xl font-montserrat font-bold mb-2"></h3>
+                            <div id="modal-description" class="text-gray-200 mb-4"></div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span id="modal-price" class="text-3xl font-bold text-blue-400"></span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div id="modal-specs" class="space-y-1 text-sm text-gray-300"></div>
+                                <div id="modal-features" class="space-y-1 text-sm text-gray-300"></div>
+                            </div>
+                            <div class="mt-6 flex justify-between items-center">
+                                <button id="modal-contact" class="bg-secondary hover:bg-red-700 text-white px-5 py-2 rounded-button font-medium transition-all duration-300">
+                                    Nous contacter
+                                </button>
+                                <div class="text-right">
+                                    <p class="text-sm text-gray-300">Réf: <span id="modal-ref"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script id="mobile-menu-toggle">
         document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             
-            // Ouvrir/fermer le menu
+            // Ouvrir/fermer le menu avec animation
             mobileMenuBtn.addEventListener('click', function () {
                 mobileMenu.classList.toggle('hidden');
+                mobileMenuBtn.classList.toggle('open');
             });
             
             // Fermer le menu après clic sur un lien
@@ -797,6 +894,7 @@
             mobileLinks.forEach(link => {
                 link.addEventListener('click', function() {
                     mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.classList.remove('open');
                 });
             });
         });
@@ -806,6 +904,7 @@
             const vehiclesBtn = document.getElementById('filter-vehicles');
             const accessoriesBtn = document.getElementById('filter-accessories');
             const photosBtn = document.getElementById('filter-photos');
+            const mobileFilter = document.getElementById('mobile-filter');
             const vehiclesSection = document.getElementById('vehicles-section');
             const accessoriesSection = document.getElementById('accessories-section');
             const photosSection = document.getElementById('photos-section');
@@ -848,6 +947,44 @@
                 
                 // Déplacer l'indicateur
                 moveIndicator(activeBtn, index);
+            };
+
+            // Fonction commune pour changer de section
+            const changeSection = async (section, index) => {
+                // Mise à jour du filtre mobile si nécessaire
+                if (mobileFilter.value !== section) {
+                    mobileFilter.value = section;
+                }
+                
+                // Mise à jour des boutons desktop si nécessaire
+                let activeBtn;
+                if (section === 'vehicles') {
+                    activeBtn = vehiclesBtn;
+                    await Promise.all([
+                        animateOut(accessoriesSection),
+                        animateOut(photosSection)
+                    ]);
+                    animateIn(vehiclesSection);
+                } else if (section === 'accessories') {
+                    activeBtn = accessoriesBtn;
+                    await Promise.all([
+                        animateOut(vehiclesSection),
+                        animateOut(photosSection)
+                    ]);
+                    animateIn(accessoriesSection);
+                } else if (section === 'photos') {
+                    activeBtn = photosBtn;
+                    await Promise.all([
+                        animateOut(vehiclesSection),
+                        animateOut(accessoriesSection)
+                    ]);
+                    animateIn(photosSection);
+                }
+                
+                // Mise à jour visuelle des boutons desktop
+                if (activeBtn) {
+                    setActiveButton(activeBtn, index);
+                }
             };
 
             const animateOut = (section) => {
@@ -896,43 +1033,20 @@
                 }, 50);
             };
 
-            vehiclesBtn.addEventListener('click', async () => {
-                setActiveButton(vehiclesBtn, 0);
+            // Événements pour les boutons desktop
+            vehiclesBtn.addEventListener('click', () => changeSection('vehicles', 0));
+            accessoriesBtn.addEventListener('click', () => changeSection('accessories', 1));
+            photosBtn.addEventListener('click', () => changeSection('photos', 2));
+            
+            // Événement pour le menu déroulant mobile
+            mobileFilter.addEventListener('change', function() {
+                const value = this.value;
+                let index = 0;
                 
-                // Animation de sortie des sections actives
-                await Promise.all([
-                    animateOut(accessoriesSection),
-                    animateOut(photosSection)
-                ]);
+                if (value === 'accessories') index = 1;
+                else if (value === 'photos') index = 2;
                 
-                // Animation d'entrée
-                animateIn(vehiclesSection);
-            });
-
-            accessoriesBtn.addEventListener('click', async () => {
-                setActiveButton(accessoriesBtn, 1);
-                
-                // Animation de sortie des sections actives
-                await Promise.all([
-                    animateOut(vehiclesSection),
-                    animateOut(photosSection)
-                ]);
-                
-                // Animation d'entrée
-                animateIn(accessoriesSection);
-            });
-
-            photosBtn.addEventListener('click', async () => {
-                setActiveButton(photosBtn, 2);
-                
-                // Animation de sortie des sections actives
-                await Promise.all([
-                    animateOut(vehiclesSection),
-                    animateOut(accessoriesSection)
-                ]);
-                
-                // Animation d'entrée
-                animateIn(photosSection);
+                changeSection(value, index);
             });
             
             // Initialisation: placer l'indicateur sous le premier bouton au chargement
@@ -956,6 +1070,9 @@
                         card.style.transform = 'translateY(0)';
                     }, 400 + (index * 100));
                 });
+                
+                // Synchroniser le menu mobile avec la vue actuelle
+                mobileFilter.value = 'vehicles';
             });
             
             // Réajuster en cas de redimensionnement
@@ -1077,6 +1194,285 @@
                 element.removeAttribute('data-delay');
                 element.removeAttribute('data-threshold');
                 element.removeAttribute('data-animate-children');
+            });
+        });
+    </script>
+    
+    <script id="details-modal-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Éléments de la modal
+            const modal = document.getElementById('details-modal');
+            const modalClose = document.getElementById('modal-close');
+            const modalImage = document.getElementById('modal-image');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalPrice = document.getElementById('modal-price');
+            const modalSpecs = document.getElementById('modal-specs');
+            const modalFeatures = document.getElementById('modal-features');
+            const modalRef = document.getElementById('modal-ref');
+            const modalContact = document.getElementById('modal-contact');
+            
+            // Base de données des articles
+            const itemsData = {
+                'opel-astra': {
+                    title: 'Opel Astra 1.4T',
+                    image: 'https://readdy.ai/api/search-image?query=modern%20silver%20Opel%20Astra%20hatchback%20car%20in%20professional%20automotive%20showroom%2C%20clean%20white%20background%2C%20side%20angle%20view%2C%20pristine%20condition%20used%20car%20for%20sale%2C%20contemporary%20vehicle%20photography&width=800&height=500&seq=opel-astra&orientation=landscape',
+                    description: 'Berline compacte en excellent état général, idéale pour un usage quotidien. Cette Opel Astra 1.4T se distingue par sa fiabilité et son faible kilométrage. Carnet d\'entretien complet disponible.',
+                    price: 'CHF 18 500',
+                    specs: [
+                        'Année: 2019',
+                        'Kilométrage: 45 000 km',
+                        'Carburant: Essence',
+                        'Boîte: Manuelle 6 vitesses',
+                        'Puissance: 150 ch',
+                        'Cylindrée: 1.4L Turbo',
+                    ],
+                    features: [
+                        'Climatisation automatique',
+                        'GPS intégré',
+                        'Bluetooth',
+                        'Régulateur de vitesse',
+                        'Capteurs de stationnement',
+                        'Caméra de recul'
+                    ],
+                    ref: 'OA-2023-45'
+                },
+                'bmw-serie3': {
+                    title: 'BMW Série 3 320d',
+                    image: 'https://readdy.ai/api/search-image?query=elegant%20black%20BMW%203%20series%20sedan%20in%20professional%20automotive%20showroom%2C%20clean%20white%20background%2C%20three%20quarter%20front%20view%2C%20premium%20used%20car%20for%20sale%2C%20luxury%20vehicle%20photography&width=800&height=500&seq=bmw-3series&orientation=landscape',
+                    description: 'Élégante berline sportive qui allie performances et confort haut de gamme. Cette BMW Série 3 dispose d\'un équipement complet et d\'une finition soignée typique de la marque.',
+                    price: 'CHF 24 900',
+                    specs: [
+                        'Année: 2018',
+                        'Kilométrage: 62 000 km',
+                        'Carburant: Diesel',
+                        'Boîte: Automatique 8 rapports',
+                        'Puissance: 190 ch',
+                        'Cylindrée: 2.0L'
+                    ],
+                    features: [
+                        'Intérieur cuir noir',
+                        'Sièges chauffants',
+                        'Navigation Pro',
+                        'Système audio Harman Kardon',
+                        'Pack M Sport',
+                        'Jantes alliage 18"'
+                    ],
+                    ref: 'BMW-2023-62'
+                },
+                'vw-golf': {
+                    title: 'VW Golf 1.5 TSI',
+                    image: 'https://readdy.ai/api/search-image?query=white%20Volkswagen%20Golf%20hatchback%20in%20professional%20automotive%20showroom%2C%20clean%20background%2C%20side%20profile%20view%2C%20well-maintained%20used%20car%20for%20sale%2C%20modern%20compact%20vehicle%20photography&width=800&height=500&seq=vw-golf&orientation=landscape',
+                    description: 'Volkswagen Golf 1.5 TSI en parfait état avec faible kilométrage. Ce véhicule polyvalent offre un excellent rapport qualité-prix et une conduite très agréable en ville comme sur route.',
+                    price: 'CHF 22 800',
+                    specs: [
+                        'Année: 2020',
+                        'Kilométrage: 28 000 km',
+                        'Carburant: Essence',
+                        'Boîte: DSG 7 rapports',
+                        'Puissance: 130 ch',
+                        'Cylindrée: 1.5L TSI'
+                    ],
+                    features: [
+                        'Cockpit digital',
+                        'Apple CarPlay / Android Auto',
+                        'Régulateur adaptatif',
+                        'Lane Assist',
+                        'Phares LED',
+                        'Climatisation 3 zones'
+                    ],
+                    ref: 'VW-2023-28'
+                },
+                'casque-vintage': {
+                    title: 'Casque Vintage M-35',
+                    image: 'https://readdy.ai/api/search-image?query=vintage%20motorcycle%20helmet%20professional%20studio%20shot%20with%20leather%20details%20and%20polished%20finish&width=800&height=500&seq=moto-helmet&orientation=landscape',
+                    description: 'Casque moto vintage haut de gamme avec finitions en cuir véritable. Design authentique inspiré des années 70 avec les standards de sécurité modernes.',
+                    price: 'CHF 280',
+                    specs: [
+                        'Taille: L (58-60cm)',
+                        'Certification: ECE 22.05',
+                        'Matériau: Fibre composite',
+                        'Poids: 1250g',
+                    ],
+                    features: [
+                        'Cuir véritable',
+                        'Intérieur amovible',
+                        'Visière incluse',
+                        'Sangle sécurisée'
+                    ],
+                    ref: 'ACC-H-35'
+                },
+                'veste-cuir': {
+                    title: 'Veste Cuir Roadster',
+                    image: 'https://readdy.ai/api/search-image?query=premium%20leather%20motorcycle%20jacket%20vintage%20style%20distressed%20finish%20professional%20studio%20photography&width=800&height=500&seq=moto-jacket&orientation=landscape',
+                    description: 'Veste en cuir premium pour motards avec finition vieillie et doublure thermique amovible. Confort optimal et protection supérieure lors de vos trajets.',
+                    price: 'CHF 420',
+                    specs: [
+                        'Taille: XL',
+                        'Matériau: Cuir de vachette',
+                        'Épaisseur: 1.2-1.3mm',
+                        'Coloris: Brun vieilli'
+                    ],
+                    features: [
+                        'Protections CE épaules et coudes',
+                        'Doublure thermique amovible',
+                        'Aérations zippées',
+                        'Poches intérieures sécurisées'
+                    ],
+                    ref: 'ACC-J-42'
+                },
+                'photo-montreux': {
+                    title: 'Course Montreux 1962',
+                    image: 'https://readdy.ai/api/search-image?query=vintage%20motorcycle%20race%20black%20and%20white%20historical%20photograph%20from%201960s%20professional%20framing&width=800&height=500&seq=vintage-race&orientation=landscape',
+                    description: 'Photographie d\'époque d\'une course légendaire à Montreux en 1962. Tirage limité et numéroté avec certificat d\'authenticité.',
+                    price: 'CHF 150',
+                    specs: [
+                        'Dimensions: 40x60 cm',
+                        'Type: Tirage argentique',
+                        'Tirage: Limité à 25 exemplaires',
+                        'Année: 1962 (original)'
+                    ],
+                    features: [
+                        'Cadre en bois noir',
+                        'Verre anti-reflets',
+                        'Certificat d\'authenticité',
+                        'Possibilité d\'encadrement sur mesure'
+                    ],
+                    ref: 'PHOTO-62-15'
+                }
+            };
+            
+            // Fonction pour ouvrir la modal avec les informations d'un article
+            const openModal = (itemKey) => {
+                const item = itemsData[itemKey];
+                if (!item) return;
+                
+                // Remplir les champs de la modal
+                modalImage.src = item.image;
+                modalTitle.textContent = item.title;
+                modalDescription.textContent = item.description;
+                modalPrice.textContent = item.price;
+                
+                // Remplir les spécifications
+                modalSpecs.innerHTML = '';
+                item.specs.forEach(spec => {
+                    const p = document.createElement('p');
+                    p.innerHTML = `<i class="ri-checkbox-circle-fill mr-1 text-blue-400"></i> ${spec}`;
+                    modalSpecs.appendChild(p);
+                });
+                
+                // Remplir les fonctionnalités
+                modalFeatures.innerHTML = '';
+                item.features.forEach(feature => {
+                    const p = document.createElement('p');
+                    p.innerHTML = `<i class="ri-checkbox-circle-fill mr-1 text-blue-400"></i> ${feature}`;
+                    modalFeatures.appendChild(p);
+                });
+                
+                modalRef.textContent = item.ref;
+                
+                // Afficher la modal
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Empêcher le défilement
+            };
+            
+            // Fermer la modal
+            const closeModal = () => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; // Réactiver le défilement
+            };
+            
+            // Attacher les gestionnaires d'événements aux boutons de détails
+            const detailsButtons = document.querySelectorAll('.details-button');
+            detailsButtons.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    // Trouver l'article correspondant
+                    const card = this.closest('.hover-lift');
+                    let itemKey;
+                    
+                    try {
+                        // Essayer de déterminer l'article en fonction de son titre
+                        const titleElement = card.querySelector('h4');
+                        if (titleElement && titleElement.textContent) {
+                            const title = titleElement.textContent;
+                            
+                            if (title.includes('Opel Astra')) {
+                                itemKey = 'opel-astra';
+                            } else if (title.includes('BMW')) {
+                                itemKey = 'bmw-serie3';
+                            } else if (title.includes('VW Golf')) {
+                                itemKey = 'vw-golf';
+                            } else if (title.includes('Casque')) {
+                                itemKey = 'casque-vintage';
+                            } else if (title.includes('Veste')) {
+                                itemKey = 'veste-cuir';
+                            } else if (title.includes('Course Montreux')) {
+                                itemKey = 'photo-montreux';
+                            } else if (title.includes('Rallye Alpin')) {
+                                itemKey = 'photo-montreux'; // Fallback pour les autres photos
+                            } else if (title.includes('Atelier Lausanne')) {
+                                itemKey = 'photo-montreux'; // Fallback pour les autres photos
+                            }
+                        }
+                    } catch (error) {
+                        console.log("Erreur lors de la détection du type d'article:", error);
+                    }
+                    
+                    // Si aucune correspondance n'est trouvée, utiliser une méthode alternative
+                    if (!itemKey) {
+                        // Détecter la section actuellement visible
+                        const sections = ['vehicles', 'accessories', 'photos'];
+                        let visibleSection = 'vehicles'; // Par défaut
+                        
+                        for (const section of sections) {
+                            const sectionElement = document.getElementById(section + '-section');
+                            if (sectionElement && !sectionElement.classList.contains('hidden')) {
+                                visibleSection = section;
+                                break;
+                            }
+                        }
+                        
+                        // Attribuer une clé en fonction de la section visible
+                        if (visibleSection === 'vehicles') {
+                            const vehicleKeys = ['opel-astra', 'bmw-serie3', 'vw-golf'];
+                            itemKey = vehicleKeys[index % vehicleKeys.length];
+                        } else if (visibleSection === 'accessories') {
+                            const accessoryKeys = ['casque-vintage', 'veste-cuir'];
+                            itemKey = accessoryKeys[index % accessoryKeys.length];
+                        } else if (visibleSection === 'photos') {
+                            itemKey = 'photo-montreux';
+                        } else {
+                            // Fallback par défaut
+                            itemKey = 'opel-astra';
+                        }
+                    }
+                    
+                    // Ouvrir la modal avec l'article identifié
+                    openModal(itemKey);
+                });
+            });
+            
+            // Fermer la modal lors d'un clic sur le bouton de fermeture
+            modalClose.addEventListener('click', closeModal);
+            
+            // Fermer la modal lors d'un clic en dehors de son contenu
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal || e.target === modal.querySelector('.absolute.inset-0')) {
+                    closeModal();
+                }
+            });
+            
+            // Fermer la modal avec la touche Echap
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+            
+            // Rediriger vers la section contact depuis la modal
+            modalContact.addEventListener('click', function() {
+                closeModal();
+                document.querySelector('a[href="#contact"]').click();
             });
         });
     </script>
