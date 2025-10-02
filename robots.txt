@@ -1,0 +1,37 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.garage-ruchonnet-lausanne.ch/sitemap.xml
+
+# Optimisation pour les principaux bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Disallow des fichiers sensibles
+Disallow: /admin/
+Disallow: /*.log$
+Disallow: /tmp/
+Disallow: /cache/
+
+# Host
+Host: https://www.garage-ruchonnet-lausanne.ch

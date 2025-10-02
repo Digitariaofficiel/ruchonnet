@@ -1,0 +1,41 @@
+{
+  "name": "Garage Ruchonnet Lausanne - Parking Privé & Motos Vintage",
+  "short_name": "Garage Ruchonnet",
+  "description": "Parking privé sécurisé 24h/24 au cœur de Lausanne et motos vintage d'occasion. CHF 280/mois autos, CHF 70/mois motos.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1A237E",
+  "theme_color": "#1A237E",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "fr-CH",
+  "dir": "ltr",
+  "categories": ["automotive", "parking", "business"],
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "screenshots": [
+    {
+      "src": "/media/presentation.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg"
+    }
+  ]
+}
