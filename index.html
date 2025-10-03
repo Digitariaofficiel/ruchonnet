@@ -1472,47 +1472,83 @@
                 });
             };
             
-            // Observer les sections visibles
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.6 // La section est considérée comme visible lorsqu'elle est à 60% visible
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        highlightNavLink(entry.target.id);
-                    }
-                });
-            }, observerOptions);
-            
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-            
-            // Vérifier la section visible au chargement initial
-            const checkInitialPosition = () => {
+            // Fonction pour détecter la section actuellement visible
+            const getCurrentSection = () => {
+                const scrollPosition = window.scrollY + 100; // Offset pour la navbar fixe
                 let currentSection = '';
-                let minDistance = Infinity;
                 
                 sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    const distance = Math.abs(rect.top);
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionBottom = sectionTop + sectionHeight;
                     
-                    if (distance < minDistance) {
-                        minDistance = distance;
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
                         currentSection = section.id;
                     }
                 });
                 
-                if (currentSection) {
-                    highlightNavLink(currentSection);
+                return currentSection;
+            };
+            
+            // Gestionnaire de scroll optimisé avec throttling
+            let ticking = false;
+            const handleScroll = () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const currentSection = getCurrentSection();
+                        if (currentSection) {
+                            highlightNavLink(currentSection);
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
                 }
             };
             
-            // Appel initial
-            checkInitialPosition();
+            // Observer les sections visibles avec un seuil plus bas
+            const observerOptions = {
+                root: null,
+                rootMargin: '-10% 0px -10% 0px',
+                threshold: [0.1, 0.3, 0.5, 0.7, 0.9]
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                let maxVisibility = 0;
+                let mostVisibleSection = '';
+                
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.intersectionRatio > maxVisibility) {
+                        maxVisibility = entry.intersectionRatio;
+                        mostVisibleSection = entry.target.id;
+                    }
+                });
+                
+                if (mostVisibleSection) {
+                    highlightNavLink(mostVisibleSection);
+                }
+            }, observerOptions);
+            
+            // Observer toutes les sections
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Ajouter le gestionnaire de scroll comme fallback
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            
+            // Vérifier la section visible au chargement initial
+            const checkInitialPosition = () => {
+                const currentSection = getCurrentSection();
+                if (currentSection) {
+                    highlightNavLink(currentSection);
+                } else {
+                    // Si aucune section n'est détectée, défaut sur parking
+                    highlightNavLink('parking');
+                }
+            };
+            
+            // Appel initial avec un léger délai pour s'assurer que la page est complètement chargée
+            setTimeout(checkInitialPosition, 100);
             
             // Supprimer les attributs d'animation des éléments
             document.querySelectorAll('.animate-on-scroll').forEach(element => {
